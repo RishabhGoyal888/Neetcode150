@@ -13,7 +13,7 @@ public:
 
         while (mink <= maxk){
             int midk = mink + (maxk-mink)/2 ;
-            long hours = 0; //total time to eat all bananas if speed is 'midk'
+            long int hours = 0; //total time to eat all bananas if speed is 'midk'
             for(int i=0;i<n;i++){
                 hours += ceil(double(piles[i])/midk);
             }
