@@ -1,5 +1,6 @@
 class TimeMap {
 public:
+    unordered_map<string, vector<pair<string,int>>> mp;
     TimeMap() {
         
     }
@@ -29,7 +30,7 @@ public:
         return ans;
     }
 
-    unordered_map<string, vector<pair<string,int>>> mp;
+    
 };
 
 /**
