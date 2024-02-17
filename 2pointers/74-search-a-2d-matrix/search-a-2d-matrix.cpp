@@ -5,9 +5,10 @@ public:
         int m = matrix[0].size() - 1;
         int lowrow = 0;
         int highrow = n;
+
+         // Binary search to find the row
         while(lowrow < highrow){
             int midrow = lowrow + (highrow-lowrow)/2;
-
             if(matrix[midrow][0] == target)
                 return true;
             else if(matrix[midrow][0] < target && matrix[midrow + 1][0] > target){
@@ -22,7 +23,7 @@ public:
 
         int lowcol = 0;
         int highcol = m;
-
+        // Binary search within the found row
         while(lowcol <= highcol){
             int midcol = lowcol + (highcol - lowcol)/2;
             if(matrix[lowrow][midcol] == target)
