@@ -28,7 +28,7 @@ public:
         }
         return ans;
     }
-private:
+
     unordered_map<string, vector<pair<string,int>>> mp;
 };
 
