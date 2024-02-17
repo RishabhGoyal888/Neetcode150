@@ -9,7 +9,7 @@ public:
     }
     
     string get(string key, int timestamp) {
-        vector<pair<string, int>> &v = mp[key];
+        vector<pair<string, int>> &v = mp[key]; //to avoid TLE using reference of the vector in the map
         string ans;
         // v = mp[key];
         int start = 0;
@@ -19,7 +19,7 @@ public:
             if(v[mid].second == timestamp)
                 return v[mid].first;
             if(v[mid].second < timestamp){
-                ans=v[mid].first;
+                ans=v[mid].first; //possible answer, if exact timestamp value is not found
                 start=mid+1;
             }
             else{
