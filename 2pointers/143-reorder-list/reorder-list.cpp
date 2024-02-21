@@ -37,15 +37,15 @@ public:
     void reorderList(ListNode* head) {
         if(head == NULL)
             return;
-        ListNode* a = head;
-        ListNode* b = head;
-        while(b->next && b->next->next){
-            a=a->next;
-            b=b->next->next;
+        ListNode* slow = head;
+        ListNode* fast = head;
+        while(fast->next && fast->next->next){
+            slow=slow->next;
+            fast=fast->next->next;
         }
-        cout<<a->val;
-        ListNode* node = a->next;
-        a->next=NULL;
+        // cout<<a->val;
+        ListNode* node = slow->next;
+        slow->next=NULL;
         ListNode* l1 = head;
         ListNode* l2 = reverse(node);
         merge(l1,l2);
