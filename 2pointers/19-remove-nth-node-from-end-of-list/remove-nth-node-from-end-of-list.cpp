@@ -20,10 +20,10 @@ public:
             m--;
             temp = temp->next;
         }
-        if(!temp){
+        if(!temp){ //if list size is also n, then temp will be NULL, remove head(nth element from last)
             return head->next;
         }
-        ListNode* prev= NULL;
+        ListNode* prev= head;
         ListNode* curr=head;
         while(temp){
             prev=curr;
@@ -33,8 +33,8 @@ public:
         
         if(curr){
             prev->next = curr->next;
-
         }
+
         delete curr;
         return head;
     }
