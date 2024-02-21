@@ -24,7 +24,7 @@ public:
     }
 
     void merge(ListNode* l1, ListNode* l2){
-        while(l2){
+        while(l1 && l2){
             ListNode* p1 = l1->next;
             ListNode* p2 = l2->next;
 
