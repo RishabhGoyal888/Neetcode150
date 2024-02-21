@@ -44,8 +44,8 @@ public:
             fast=fast->next->next;
         }
 
-        ListNode* secondHead = slow->next;
-        slow->next=NULL;
+        ListNode* secondHead = slow->next; //head of second half, and keeping the first half longer in case of odd size list
+        slow->next=NULL; //detaching both halves
         ListNode* l1 = head;
         ListNode* l2 = reverse(secondHead);
         merge(l1,l2);
