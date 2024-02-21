@@ -21,33 +21,28 @@ public:
             int mid2 = left - mid1; // Partition point for nums2, no. of elements in left partition from nums2
             
             // Initialize variables to store elements surrounding the partition points
-            int minLeft1 = INT_MIN; // Smallest element on the left side of nums1
-            int minLeft2 = INT_MIN; // Smallest element on the left side of nums2
-            int maxRight1 = INT_MAX; // Largest element on the right side of nums1
-            int maxRight2 = INT_MAX; // Largest element on the right side of nums2
+            int l1 = INT_MIN; // Smallest element on the left side of nums1
+            int l2 = INT_MIN; // Smallest element on the left side of nums2
+            int r1 = INT_MAX; // Largest element on the right side of nums1
+            int r2 = INT_MAX; // Largest element on the right side of nums2
             
             // Update variables if partition points are within bounds
-            if (mid1 < n) maxRight1 = nums1[mid1];
-            if (mid2 < m) maxRight2 = nums2[mid2];
-            if (mid1 - 1 >= 0) minLeft1 = nums1[mid1 - 1];
-            if (mid2 - 1 >= 0) minLeft2 = nums2[mid2 - 1];
+            if (mid1 < n) r1 = nums1[mid1];
+            if (mid2 < m) r2 = nums2[mid2];
+            if (mid1 - 1 >= 0) l1 = nums1[mid1 - 1];
+            if (mid2 - 1 >= 0) l2 = nums2[mid2 - 1];
             
             // Check if the partition is correct
-            if (minLeft1 <= maxRight2 && minLeft2 <= maxRight1) {
-                // If the total size of the combined array is odd, return the maximum element from the left partitions
-                if (size % 2 == 1) return max(minLeft1, minLeft2);
-                // If the total size of the combined array is even, calculate and return the median
-                else return (double)((max(minLeft1, minLeft2) + min(maxRight1, maxRight2)) / 2.0);
-            } else if (minLeft1 > maxRight2) {
-                // Adjust the search range if the partition is too far to the right
-                high = mid1 - 1;
+            if (l1 <= r2 && l2 <= r1) {
+                if (size % 2 == 1) return max(l1, l2);
+                else return (double)((max(l1, l2) + min(r1, r2)) / 2.0);
+            } else if (l1 > r2) {
+                high = mid1 - 1; //bcz if we increase no of elements in left part from arr1, next l1 will also be greater than r2, means no. should decrease
             } else {
-                // Adjust the search range if the partition is too far to the left
                 low = mid1 + 1;
             }
         }
-        
-        // Should never reach here
+
         return -1;
     }
 };
