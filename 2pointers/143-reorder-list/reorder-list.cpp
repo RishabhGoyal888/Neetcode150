@@ -43,11 +43,11 @@ public:
             slow=slow->next;
             fast=fast->next->next;
         }
-        
-        ListNode* node = slow->next;
+
+        ListNode* secondHead = slow->next;
         slow->next=NULL;
         ListNode* l1 = head;
-        ListNode* l2 = reverse(node);
+        ListNode* l2 = reverse(secondHead);
         merge(l1,l2);
     }
 };
