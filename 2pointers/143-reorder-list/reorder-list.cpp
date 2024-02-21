@@ -43,7 +43,7 @@ public:
             slow=slow->next;
             fast=fast->next->next;
         }
-        // cout<<a->val;
+        
         ListNode* node = slow->next;
         slow->next=NULL;
         ListNode* l1 = head;
