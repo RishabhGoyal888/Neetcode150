@@ -26,24 +26,17 @@ public:
             mp[curr] = new Node(curr->val);
             curr=curr->next;
         }
+
         curr = head;
-        Node* dummy = mp[curr];
-        Node* temp = dummy;
+        Node* newHead = mp[curr];
+        Node* temp = newHead;
         while(curr){
             temp->next = mp[curr->next];
             temp->random = mp[curr->random];
             temp=temp->next;
             curr=curr->next;
         }
-        return dummy;
-        // Node* h = head;
-        // while (h){
-        //     Node* newNode = mp[h];
-        //     newNode->next = mp[h->next];
-        //     newNode->random = mp[h->random];
-        //     h = h->next;
-        // }
-        // return mp[head];
+        return newHead;
     }
 };
 
