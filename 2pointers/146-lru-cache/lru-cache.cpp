@@ -65,7 +65,8 @@ public:
 
         if(cache.size() > cap ){
             Node* LRU = left->next;
-            remove(LRU);
+            left->next = LRU->next;
+            LRU->next->prev = left;
 
             cache.erase(LRU->key);
             delete(LRU);
