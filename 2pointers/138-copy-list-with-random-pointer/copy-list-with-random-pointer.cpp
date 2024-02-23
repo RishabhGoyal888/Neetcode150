@@ -29,21 +29,23 @@ public:
         Node* dummy = new Node(-1);
         Node* temp = dummy;
         curr = head;
-        // while(curr){
-        //     temp->next = mp[curr->next];
-        //     temp->random = mp[curr->random];
-        //     temp=temp->next;
-        //     curr=curr->next;
-        // }
-        Node* h = head;
-        while (h){
-            Node* newNode = mp[h];
-            newNode->next = mp[h->next];
-            newNode->random = mp[h->random];
-            h = h->next;
+        temp->next = mp[curr];
+        temp=temp->next;
+        while(curr){
+            temp->next = mp[curr->next];
+            temp->random = mp[curr->random];
+            temp=temp->next;
+            curr=curr->next;
         }
-        // return dummy->next;
-        return mp[head];
+        return dummy->next;
+        // Node* h = head;
+        // while (h){
+        //     Node* newNode = mp[h];
+        //     newNode->next = mp[h->next];
+        //     newNode->random = mp[h->random];
+        //     h = h->next;
+        // }
+        // return mp[head];
     }
 };
 
