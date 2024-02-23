@@ -16,15 +16,13 @@ public:
 
 class LRUCache {
 public:
-    //using doubly linked list for LRU caching, keeping capacity in cap and storing the list between 2 nodes left and right
+    //using doubly linked list for LRU caching, keeping capacity in cap and storing the list between 2 boundary nodes left and right(these are for our reference only, they are not part of the mantained list we need to keep), adding the most recent node just before the right node, and so the least recent node will be the node just after the head, i.e just after the left node.
     int cap;
-    unordered_map<int, Node*> cache;
+    unordered_map<int, Node*> cache;  //using hashing for keeping track, if key is already there with some value.
     Node* left;
     Node* right;
 
-    
-
-    LRUCache(int capacity) {
+    LRUCache(int capacity) { //initialising, seting capacity and boundary nodes, and linking them
         cap = capacity;
         left = new Node(0,0);
         right = new Node(0,0);
@@ -34,7 +32,7 @@ public:
     }
     
     int get(int key) {
-        if(cache.find(key) != cache.end()){
+        if(cache.find(key) != cache.end()){  // if key is there, remove it and insert it again at the end so that it becomes the most recent node.
             remove(cache[key]);
             insert(cache[key]);
             return cache[key]->val;
@@ -43,22 +41,23 @@ public:
     }
     
     void put(int key, int value) {
-        if(cache.find(key) != cache.end()){
+        if(cache.find(key) != cache.end()){ //if already there remove from list
             remove(cache[key]);
         }
-        cache[key] = new Node(key, value);
-        insert(cache[key]);
+        //these steps common if already in list or not
+        cache[key] = new Node(key, value); //insert or update in cache table
+        insert(cache[key]); //insert this node in list
 
         if(cache.size() > cap ){
-            Node* LRU = left->next;
-            remove(LRU);
-
+            Node* LRU = left->next; //least recent used will be just after head, remove it and also erase from hash
+            remove(LRU); 
             cache.erase(LRU->key);
             delete(LRU);
         }
     }
 
-    void remove(Node* node){
+    //user added fucntions for inserting and removing a node from the list
+    void remove(Node* node){ //removing node just after the head(left node)
         Node* prevNode = node->prev;
         Node* nextNode = node->next;
 
@@ -66,7 +65,7 @@ public:
         nextNode->prev = prevNode;
     }
 
-    void insert(Node* node){
+    void insert(Node* node){ //inserting node just before the tail(right node)
         Node* prevNode = right->prev;
         Node* nextNode = right;
 
