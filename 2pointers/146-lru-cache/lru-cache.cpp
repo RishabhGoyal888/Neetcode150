@@ -1,3 +1,4 @@
+//created a diubly linked data struct with key and value 
 class Node {
 public: 
     int key;
@@ -15,28 +16,13 @@ public:
 
 class LRUCache {
 public:
+    //using doubly linked list for LRU caching, keeping capacity in cap and storing the list between 2 nodes left and right
     int cap;
     unordered_map<int, Node*> cache;
     Node* left;
     Node* right;
 
-    void remove(Node* node){
-        Node* prevNode = node->prev;
-        Node* nextNode = node->next;
-
-        prevNode->next = nextNode;
-        nextNode->prev = prevNode;
-    }
-
-    void insert(Node* node){
-        Node* prevNode = right->prev;
-        Node* nextNode = right;
-
-        prevNode->next = node;
-        nextNode->prev = node;
-        node->prev = prevNode;
-        node->next = nextNode;
-    }
+    
 
     LRUCache(int capacity) {
         cap = capacity;
@@ -65,14 +51,30 @@ public:
 
         if(cache.size() > cap ){
             Node* LRU = left->next;
-            left->next = LRU->next;
-            LRU->next->prev = left;
+            remove(LRU);
 
             cache.erase(LRU->key);
             delete(LRU);
         }
     }
 
+    void remove(Node* node){
+        Node* prevNode = node->prev;
+        Node* nextNode = node->next;
+
+        prevNode->next = nextNode;
+        nextNode->prev = prevNode;
+    }
+
+    void insert(Node* node){
+        Node* prevNode = right->prev;
+        Node* nextNode = right;
+
+        prevNode->next = node;
+        nextNode->prev = node;
+        node->prev = prevNode;
+        node->next = nextNode;
+    }
     
 };
 
