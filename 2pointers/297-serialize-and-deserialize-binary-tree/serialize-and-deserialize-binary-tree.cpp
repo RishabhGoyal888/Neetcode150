@@ -12,7 +12,7 @@ public:
 
     void helper(TreeNode* root, string &s){
         if(!root){
-            s += "N|";
+            s += "N|"; //adding '|' as a delimiter for handling multiple digit numbers in string
             return;
         } 
         s=s + to_string(root->val) + "|";
@@ -26,34 +26,30 @@ public:
     string serialize(TreeNode* root) {
         string s;
         helper(root,s);
-        for(auto x: s){
-            cout<<x;
-        }
         return s;
     }
 
     TreeNode* helper2(string &data, int &curr){
-
         if(data[curr] == 'N'){
             curr++;
-            curr++;
+            curr++; // skipping delimeter also
             return NULL;
         }
-        int sign = 1;
-        if (data[curr] == '-') {
-            sign = -1;
-            curr++; // Skip the negative sign
-        }
-        int value=0;
-        while(data[curr] != '|'){
-            value = value * 10 + (data[curr] - '0');
-            curr++;
-        }
-        // string temp = "";
-        // while(data[curr] != '|'){
-        //     temp += data[curr++];
+        // int sign = 1;
+        // if (data[curr] == '-') {
+        //     sign = -1;
+        //     curr++; // Skip the negative sign
         // }
-        TreeNode* root = new TreeNode(value * sign);
+        // int value=0;
+        // while(data[curr] != '|'){
+        //     value = value * 10 + (data[curr] - '0');
+        //     curr++;
+        // }
+        string temp = "";
+        while(data[curr] != '|'){
+            temp += data[curr++];
+        }
+        TreeNode* root = new TreeNode(stoi(temp));
         curr++;
         root->left = helper2(data, curr);
         root->right = helper2(data, curr);
