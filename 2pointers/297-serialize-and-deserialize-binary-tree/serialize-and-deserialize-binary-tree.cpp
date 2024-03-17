@@ -10,46 +10,61 @@
 class Codec {
 public:
 
-    // Encodes a tree to a single string.
-    void BTtoStr(TreeNode* root, string &ser){
+    void helper(TreeNode* root, string &s){
         if(!root){
-            ser += "N "; //for NULL
+            s += "N|";
             return;
-        }
-
-        //build preorder string
-        ser += to_string(root->val) + ' ';
-        BTtoStr(root->left, ser);
-        BTtoStr(root->right, ser);
+        } 
+        s=s + to_string(root->val) + "|";
+        helper(root->left, s);
+        helper(root->right, s);
+        return;
 
     }
+
+    // Encodes a tree to a single string.
     string serialize(TreeNode* root) {
-        string ser = "";
-        BTtoStr(root, ser);
-        return ser;
+        string s;
+        helper(root,s);
+        for(auto x: s){
+            cout<<x;
+        }
+        return s;
+    }
+
+    TreeNode* helper2(string &data, int &curr){
+
+        if(data[curr] == 'N'){
+            curr++;
+            curr++;
+            return NULL;
+        }
+        int sign = 1;
+        if (data[curr] == '-') {
+            sign = -1;
+            curr++; // Skip the negative sign
+        }
+        int value=0;
+        while(data[curr] != '|'){
+            value = value * 10 + (data[curr] - '0');
+            curr++;
+        }
+        // string temp = "";
+        // while(data[curr] != '|'){
+        //     temp += data[curr++];
+        // }
+        TreeNode* root = new TreeNode(value * sign);
+        curr++;
+        root->left = helper2(data, curr);
+        root->right = helper2(data, curr);
+        return root;
     }
 
     // Decodes your encoded data to tree.
-
-    TreeNode* StrToBT(string &data, int &i){
-        if(data[i] == 'N'){
-            i+=2; // skip space character 
-            return nullptr;
-        }
-
-        string tmp = ""; // to store the number
-        while(data[i] != ' ') tmp += data[i++]; // get number
-        TreeNode* node = new TreeNode(stoi(tmp));
-        i++; //skip the space character
-        node->left = StrToBT(data, i); //recurse to build tree
-        node->right = StrToBT(data, i);
-
-        return node;
-
-    }
     TreeNode* deserialize(string data) {
-        int i = 0;
-        return StrToBT(data, i);
+        int curr=0;
+        TreeNode* root = helper2(data,curr);
+        return root;
     }
 };
 
