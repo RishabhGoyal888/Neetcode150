@@ -13,8 +13,6 @@ public:
             return;
         }
 
-        // permutesubfunc(nums, ans, curr, start + 1);
-
         for(int i = start; i < nums.size(); i++){
             swap(nums[start], nums[i]);
             permutesubfunc(nums, ans, curr, start+1);
