@@ -19,7 +19,7 @@ public:
 
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
         vector<vector<int>> res;
-        set<vector<int>> ans{{}};
+        set<vector<int>> ans;
         vector<int> curr;
         int n = nums.size();
         sort(nums.begin(), nums.end());
