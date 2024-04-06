@@ -109,24 +109,25 @@ public:
     vector<vector<string>> solveNQueens(int n) {
         vector<int> curr;
         vector<vector<int>> ans;
-        vector<vector<string>> res;
         
         func(0,n, curr, ans);
 
-        for(auto x: ans){
-            vector<string> currstr;
-            for(auto y:x){
+        vector<vector<string>> res;
+        //generating string based output as needed in question from integer based output solution
+        for(auto x: ans){  // x will be 1 vector of possible answer
+            vector<string> current;
+            for(auto y:x){  // y will be position of each queen in integer index in current vector
                 string temp = "";
                 for(int i=0;i<n;i++){
-                    if(i==y){
+                    if(i==y){  //where integer queen is there place 'Q' there 
                         temp.push_back('Q');
                     } else{
-                        temp.push_back('.');
+                        temp.push_back('.');  //else place "."
                     }
                 }
-                currstr.push_back(temp);
+                current.push_back(temp);
             }
-            res.push_back(currstr);
+            res.push_back(current);
         }
         return res;
     }
