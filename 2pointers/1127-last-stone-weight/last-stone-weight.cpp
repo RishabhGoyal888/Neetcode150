@@ -12,11 +12,6 @@ public:
             int x = maxhp.top();
             maxhp.pop();
             maxhp.push(y-x);
-            // if(y == x){
-            //     continue;
-            // } else {
-            //     maxhp.push(y-x);
-            // }
         }
         return maxhp.top();
     }
