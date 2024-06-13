@@ -15,7 +15,7 @@ public:
             int newcol = col + ncol[i];
             if(newrow >= 0 && newrow < n && newcol >= 0 && newcol < m && grid[newrow][newcol] && !vis[newrow][newcol]){
                     dfs(grid,vis,newrow,newcol,curr, ans);
-                    // curr--;
+                    // curr--; no need because imagin t shape island
                 }
         } 
     }
