@@ -1,7 +1,7 @@
 class Solution {
 public:
 
-    bool checkpossible(vector<int>& arr, int m, int n, int dist){
+    bool checkpossible(vector<int>& arr, int balls, int n, int dist){
         int count = 1;
         int last = arr[0];
         for(int i =1;i<n;i++){
@@ -9,7 +9,7 @@ public:
                 count++;
                 last = arr[i];
             }
-            if(count >= m){
+            if(count == balls){
                 return true;
             }
         }
