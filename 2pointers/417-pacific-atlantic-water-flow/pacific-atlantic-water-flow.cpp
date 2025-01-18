@@ -10,7 +10,7 @@ public:
         for(int x=0;x<4;x++){
             int nexti = i + nrow[x];
             int nextj = j + ncol[x];
-            if(nexti >= 0 && nexti < n && nextj >= 0 && nextj < m && sea[nexti][nextj] == 0 && heights[nexti][nextj] >= heights[i][j]){
+            if(nexti >= 0 && nexti < n && nextj >= 0 && nextj < m && sea[nexti][nextj] == 0 && heights[nexti][nextj] >= heights[i][j]){ //using reverse dfs thats why opposite height condition, water needs to flow from island to sea
                 dfs(nexti, nextj, sea, heights);
             }
         }
