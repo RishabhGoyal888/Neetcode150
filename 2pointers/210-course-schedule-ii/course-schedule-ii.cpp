@@ -2,8 +2,7 @@ class Solution {
 public:
     vector<int> findOrder(int numCourses, vector<vector<int>>& prereq) {
         int n = prereq.size();
-        vector<vector<int>> adj(numCourses);
-        
+        vector<int> adj[numCourses];
         for(int i=0;i<n;i++){
             adj[prereq[i][1]].push_back(prereq[i][0]);
         }
