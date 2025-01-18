@@ -41,18 +41,13 @@ public:
 
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
-                if(board[i][j]=='O' && vis[i][j] == 0){
-                    dfs(i,j,board, vis, n, m,false);
-                }
-            }
-        }
-
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                if(board[i][j]=='S'){
+                if(board[i][j]=='O'){
+                    board[i][j] = 'X';
+                } else if(board[i][j] == 'S'){
                     board[i][j] = 'O';
                 }
             }
         }
+
     }
 };
