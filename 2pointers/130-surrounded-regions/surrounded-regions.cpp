@@ -42,7 +42,6 @@ public:
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
                 if(board[i][j]=='O' && vis[i][j] == 0){
-                    cout<<i<<" "<<j;
                     dfs(i,j,board, vis, n, m,false);
                 }
             }
@@ -54,13 +53,6 @@ public:
                     board[i][j] = 'O';
                 }
             }
-        }
-
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                cout<<board[i][j]<<" ";
-            }
-            cout<<"\n";
         }
     }
 };
