@@ -14,10 +14,10 @@ public:
     //     return min(helper(cost, 0,dp), helper(cost,1,dp));
     // }
     int helper(vector<int> &cost, int i, vector<int> &dp){
-        if(dp[i] != -1)
-            return dp[i];
         if(i == 0 || i ==1)
             return 0;
+        if(dp[i] != -1)
+            return dp[i];
         return dp[i] =min(helper(cost, i-1,dp) + cost[i-1] , helper(cost, i-2,dp) + cost[i-2] ) ;
 
     }
